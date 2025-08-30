@@ -8,7 +8,9 @@ import (
 	"net"
 
 	"github.com/RyanHartadi06/clara-be/internal/handler"
-	"github.com/RyanHartadi06/clara-be/pb/service"
+	"github.com/RyanHartadi06/clara-be/internal/repository"
+	"github.com/RyanHartadi06/clara-be/internal/service"
+	"github.com/RyanHartadi06/clara-be/pb/project"
 	"github.com/RyanHartadi06/clara-be/pkg/database"
 	"github.com/RyanHartadi06/clara-be/pkg/grpcmiddleware"
 	"github.com/joho/godotenv"
@@ -25,10 +27,12 @@ func main() {
 	}
 	defer lis.Close()
 
-	database.ConnectDB(ctx, os.Getenv("DB_URI"))
+	db := database.ConnectDB(ctx, os.Getenv("DB_URI"))
 	log.Println("Connected to database")
 
-	serviceHandler := handler.NewServiceHandler()
+	projectRepository := repository.NewProjectRepository(db)
+	projectService := service.NewProjectService(projectRepository)
+	projectHandler := handler.NewProjectHandler(projectService)
 
 	serv := grpc.NewServer(
 		grpc.ChainUnaryInterceptor(
@@ -36,7 +40,7 @@ func main() {
 		),
 	)
 
-	service.RegisterHelloWorldServiceServer(serv, serviceHandler)
+	project.RegisterProjectServiceServer(serv, projectHandler)
 
 	if os.Getenv("ENVIRONMENT") == "dev" {
 		reflection.Register(serv)

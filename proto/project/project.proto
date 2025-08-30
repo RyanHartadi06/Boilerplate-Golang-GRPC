@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option go_package = "github.com/RyanHartadi06/clara-be/pb/project";
+
+package project;
+
+import "common/base_response.proto";
+import "buf/validate/validate.proto";
+
+service ProjectService {
+    rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse);
+}
+
+message CreateProjectRequest {
+    string name = 1 [(buf.validate.field).string = {min_len: 1, max_len:255}];
+    string date_start = 2 [(buf.validate.field).string = {min_len: 1, max_len:255}];
+    string date_end = 3 [(buf.validate.field).string = {min_len: 1, max_len:255}];
+    string status = 4 [(buf.validate.field).string = {min_len: 1, max_len:255}];
+
+}
+
+message CreateProjectResponse {
+    common.BaseResponse base = 1;
+    string message = 2;
+}
+
