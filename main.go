@@ -7,12 +7,12 @@ import (
 
 	"net"
 
+	"github.com/RyanHartadi06/clara-be/internal/grpcmiddleware"
 	"github.com/RyanHartadi06/clara-be/internal/handler"
 	"github.com/RyanHartadi06/clara-be/internal/repository"
 	"github.com/RyanHartadi06/clara-be/internal/service"
 	"github.com/RyanHartadi06/clara-be/pb/project"
 	"github.com/RyanHartadi06/clara-be/pkg/database"
-	"github.com/RyanHartadi06/clara-be/pkg/grpcmiddleware"
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

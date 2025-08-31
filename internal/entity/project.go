@@ -1,6 +1,9 @@
 package entity
 
-import "time"
+import (
+	"database/sql"
+	"time"
+)
 
 type Project struct {
 	Id        string
@@ -10,6 +13,6 @@ type Project struct {
 	Status    string
 	CreatedAt time.Time
 	CreatedBy string
-	UpdatedAt time.Time
-	UpdatedBy string
+	UpdatedAt sql.NullTime
+	UpdatedBy sql.NullString
 }

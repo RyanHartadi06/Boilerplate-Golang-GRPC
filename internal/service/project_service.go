@@ -13,6 +13,7 @@ import (
 
 type IProjectService interface {
 	CreateProject(ctx context.Context, request *projectpb.CreateProjectRequest) (*projectpb.CreateProjectResponse, error)
+	DetailProject(ctx context.Context, request *projectpb.DetailProjectRequest) (*projectpb.DetailProjectResponse, error)
 }
 
 type projectService struct {
@@ -62,6 +63,30 @@ func (ps *projectService) CreateProject(ctx context.Context, request *projectpb.
 	//insert ke db
 	return &projectpb.CreateProjectResponse{
 		Base: utils.SuccessResponse("Project created successfully"),
+	}, nil
+}
+
+func (ps *projectService) DetailProject(ctx context.Context, request *projectpb.DetailProjectRequest) (*projectpb.DetailProjectResponse, error) {
+	// Cek project ke database
+	project, err := ps.projectRepository.GetProjectById(ctx, request.Id)
+	if err != nil {
+		return nil, err
+	}
+
+	if project == nil {
+		return &projectpb.DetailProjectResponse{
+			Base: utils.NotFoundResponse("Not Found"),
+		}, nil
+	}
+
+	return &projectpb.DetailProjectResponse{
+		Base:      utils.SuccessResponse("Project found"),
+		Id:        project.Id,
+		Name:      project.Name,
+		DateStart: project.DateStart.Format("2006-01-02"),
+		DateEnd:   project.DateEnd.Format("2006-01-02"),
+		Status:    project.Status,
+		CreatedAt: project.CreatedAt.Format("2006-01-02 15:04:05"),
 	}, nil
 }
 

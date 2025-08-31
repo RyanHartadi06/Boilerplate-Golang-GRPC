@@ -12,6 +12,14 @@ func BadRequestResponse(message string) *common.BaseResponse {
 	return &common.BaseResponse{
 		StatusCode: 400,
 		Message:    message,
+		IsError:    true,
+	}
+}
+func NotFoundResponse(message string) *common.BaseResponse {
+	return &common.BaseResponse{
+		StatusCode: 404,
+		Message:    message,
+		IsError:    true,
 	}
 }
 

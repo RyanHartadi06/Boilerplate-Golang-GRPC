@@ -5,10 +5,13 @@ option go_package = "github.com/RyanHartadi06/clara-be/pb/project";
 package project;
 
 import "common/base_response.proto";
+import "common/pagination.proto";
 import "buf/validate/validate.proto";
 
 service ProjectService {
     rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse);
+    rpc DetailProject(DetailProjectRequest) returns (DetailProjectResponse);
+    rpc ListProject(ListProjectRequest) returns (ListProjectResponse);
 }
 
 message CreateProjectRequest {
@@ -16,11 +19,41 @@ message CreateProjectRequest {
     string date_start = 2 [(buf.validate.field).string = {min_len: 1, max_len:255}];
     string date_end = 3 [(buf.validate.field).string = {min_len: 1, max_len:255}];
     string status = 4 [(buf.validate.field).string = {min_len: 1, max_len:255}];
-
 }
 
 message CreateProjectResponse {
     common.BaseResponse base = 1;
-    string message = 2;
 }
 
+
+message DetailProjectRequest {
+    string id = 1 [(buf.validate.field).string = {min_len: 1, max_len:255}];;
+}
+
+message DetailProjectResponse {
+    common.BaseResponse base = 1;
+    string id = 2;
+    string name = 3;
+    string date_start = 4;
+    string date_end = 5;
+    string status = 6;
+    string created_at = 7;
+}
+
+message ListProjectItems {
+    int64 id = 1;
+    string name = 2;
+    string date_start = 3;
+    string date_end = 4;
+    string status = 5;
+}
+
+message ListProjectRequest {
+    common.PaginationRequest pagination = 1;
+}
+
+message ListProjectResponse {
+    common.BaseResponse base = 1;
+    common.PaginationResponse pagination = 2;
+    repeated ListProjectItems data = 3;
+}
