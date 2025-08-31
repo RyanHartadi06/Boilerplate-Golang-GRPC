@@ -12,6 +12,7 @@ type IProjectRepository interface {
 	GetProjectByName(ctx context.Context, name string) (*entity.Project, error)
 	InsertProject(ctx context.Context, project *entity.Project) error
 	GetProjectById(ctx context.Context, id string) (*entity.Project, error)
+	DeleteProjectId(ctx context.Context, id string) error
 }
 
 type projectRepository struct {
@@ -85,6 +86,13 @@ func (repo *projectRepository) GetProjectById(ctx context.Context, id string) (*
 		return nil, err
 	}
 	return &productEntity, nil
+}
+func (repo *projectRepository) DeleteProjectId(ctx context.Context, id string) error {
+	_, err := repo.db.ExecContext(ctx, "DELETE FROM project WHERE id = $1", id)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func NewProjectRepository(db *sql.DB) IProjectRepository {

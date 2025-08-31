@@ -56,6 +56,27 @@ func (ph *projectHandler) DetailProject(ctx context.Context, request *project.De
 	return res, nil
 }
 
+func (ph *projectHandler) DeleteProject(ctx context.Context, request *project.DeleteProjectRequest) (*project.DeleteProjectResponse, error) {
+	validationErrors, err := utils.CheckValidation(request)
+	if err != nil {
+		return nil, err
+	}
+
+	if validationErrors != nil {
+		return &project.DeleteProjectResponse{
+			Base: utils.ValidationErrorResponse(validationErrors),
+		}, nil
+	}
+
+	//Process Delete Project
+	res, err := ph.projectService.DeleteProject(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
 func NewProjectHandler(projectService service.IProjectService) *projectHandler {
 	return &projectHandler{
 		projectService: projectService,

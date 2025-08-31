@@ -271,6 +271,94 @@ func (x *DetailProjectResponse) GetCreatedAt() string {
 	return ""
 }
 
+type DeleteProjectRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteProjectRequest) Reset() {
+	*x = DeleteProjectRequest{}
+	mi := &file_project_project_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteProjectRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteProjectRequest) ProtoMessage() {}
+
+func (x *DeleteProjectRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_project_project_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteProjectRequest.ProtoReflect.Descriptor instead.
+func (*DeleteProjectRequest) Descriptor() ([]byte, []int) {
+	return file_project_project_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *DeleteProjectRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteProjectResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Base          *common.BaseResponse   `protobuf:"bytes,1,opt,name=base,proto3" json:"base,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteProjectResponse) Reset() {
+	*x = DeleteProjectResponse{}
+	mi := &file_project_project_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteProjectResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteProjectResponse) ProtoMessage() {}
+
+func (x *DeleteProjectResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_project_project_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteProjectResponse.ProtoReflect.Descriptor instead.
+func (*DeleteProjectResponse) Descriptor() ([]byte, []int) {
+	return file_project_project_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DeleteProjectResponse) GetBase() *common.BaseResponse {
+	if x != nil {
+		return x.Base
+	}
+	return nil
+}
+
 type ListProjectItems struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -284,7 +372,7 @@ type ListProjectItems struct {
 
 func (x *ListProjectItems) Reset() {
 	*x = ListProjectItems{}
-	mi := &file_project_project_proto_msgTypes[4]
+	mi := &file_project_project_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -296,7 +384,7 @@ func (x *ListProjectItems) String() string {
 func (*ListProjectItems) ProtoMessage() {}
 
 func (x *ListProjectItems) ProtoReflect() protoreflect.Message {
-	mi := &file_project_project_proto_msgTypes[4]
+	mi := &file_project_project_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -309,7 +397,7 @@ func (x *ListProjectItems) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProjectItems.ProtoReflect.Descriptor instead.
 func (*ListProjectItems) Descriptor() ([]byte, []int) {
-	return file_project_project_proto_rawDescGZIP(), []int{4}
+	return file_project_project_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ListProjectItems) GetId() int64 {
@@ -356,7 +444,7 @@ type ListProjectRequest struct {
 
 func (x *ListProjectRequest) Reset() {
 	*x = ListProjectRequest{}
-	mi := &file_project_project_proto_msgTypes[5]
+	mi := &file_project_project_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -368,7 +456,7 @@ func (x *ListProjectRequest) String() string {
 func (*ListProjectRequest) ProtoMessage() {}
 
 func (x *ListProjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_project_project_proto_msgTypes[5]
+	mi := &file_project_project_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -381,7 +469,7 @@ func (x *ListProjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProjectRequest.ProtoReflect.Descriptor instead.
 func (*ListProjectRequest) Descriptor() ([]byte, []int) {
-	return file_project_project_proto_rawDescGZIP(), []int{5}
+	return file_project_project_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListProjectRequest) GetPagination() *common.PaginationRequest {
@@ -402,7 +490,7 @@ type ListProjectResponse struct {
 
 func (x *ListProjectResponse) Reset() {
 	*x = ListProjectResponse{}
-	mi := &file_project_project_proto_msgTypes[6]
+	mi := &file_project_project_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -414,7 +502,7 @@ func (x *ListProjectResponse) String() string {
 func (*ListProjectResponse) ProtoMessage() {}
 
 func (x *ListProjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_project_project_proto_msgTypes[6]
+	mi := &file_project_project_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -427,7 +515,7 @@ func (x *ListProjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProjectResponse.ProtoReflect.Descriptor instead.
 func (*ListProjectResponse) Descriptor() ([]byte, []int) {
-	return file_project_project_proto_rawDescGZIP(), []int{6}
+	return file_project_project_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListProjectResponse) GetBase() *common.BaseResponse {
@@ -480,7 +568,12 @@ const file_project_project_proto_rawDesc = "" +
 	"\bdate_end\x18\x05 \x01(\tR\adateEnd\x12\x16\n" +
 	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\tR\tcreatedAt\"\x88\x01\n" +
+	"created_at\x18\a \x01(\tR\tcreatedAt\"2\n" +
+	"\x14DeleteProjectRequest\x12\x1a\n" +
+	"\x02id\x18\x01 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x02id\"A\n" +
+	"\x15DeleteProjectResponse\x12(\n" +
+	"\x04base\x18\x01 \x01(\v2\x14.common.BaseResponseR\x04base\"\x88\x01\n" +
 	"\x10ListProjectItems\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n" +
@@ -497,10 +590,11 @@ const file_project_project_proto_rawDesc = "" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x1a.common.PaginationResponseR\n" +
 	"pagination\x12-\n" +
-	"\x04data\x18\x03 \x03(\v2\x19.project.ListProjectItemsR\x04data2\xfa\x01\n" +
+	"\x04data\x18\x03 \x03(\v2\x19.project.ListProjectItemsR\x04data2\xca\x02\n" +
 	"\x0eProjectService\x12N\n" +
 	"\rCreateProject\x12\x1d.project.CreateProjectRequest\x1a\x1e.project.CreateProjectResponse\x12N\n" +
-	"\rDetailProject\x12\x1d.project.DetailProjectRequest\x1a\x1e.project.DetailProjectResponse\x12H\n" +
+	"\rDetailProject\x12\x1d.project.DetailProjectRequest\x1a\x1e.project.DetailProjectResponse\x12N\n" +
+	"\rDeleteProject\x12\x1d.project.DeleteProjectRequest\x1a\x1e.project.DeleteProjectResponse\x12H\n" +
 	"\vListProject\x12\x1b.project.ListProjectRequest\x1a\x1c.project.ListProjectResponseB.Z,github.com/RyanHartadi06/clara-be/pb/projectb\x06proto3"
 
 var (
@@ -515,37 +609,42 @@ func file_project_project_proto_rawDescGZIP() []byte {
 	return file_project_project_proto_rawDescData
 }
 
-var file_project_project_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_project_project_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_project_project_proto_goTypes = []any{
 	(*CreateProjectRequest)(nil),      // 0: project.CreateProjectRequest
 	(*CreateProjectResponse)(nil),     // 1: project.CreateProjectResponse
 	(*DetailProjectRequest)(nil),      // 2: project.DetailProjectRequest
 	(*DetailProjectResponse)(nil),     // 3: project.DetailProjectResponse
-	(*ListProjectItems)(nil),          // 4: project.ListProjectItems
-	(*ListProjectRequest)(nil),        // 5: project.ListProjectRequest
-	(*ListProjectResponse)(nil),       // 6: project.ListProjectResponse
-	(*common.BaseResponse)(nil),       // 7: common.BaseResponse
-	(*common.PaginationRequest)(nil),  // 8: common.PaginationRequest
-	(*common.PaginationResponse)(nil), // 9: common.PaginationResponse
+	(*DeleteProjectRequest)(nil),      // 4: project.DeleteProjectRequest
+	(*DeleteProjectResponse)(nil),     // 5: project.DeleteProjectResponse
+	(*ListProjectItems)(nil),          // 6: project.ListProjectItems
+	(*ListProjectRequest)(nil),        // 7: project.ListProjectRequest
+	(*ListProjectResponse)(nil),       // 8: project.ListProjectResponse
+	(*common.BaseResponse)(nil),       // 9: common.BaseResponse
+	(*common.PaginationRequest)(nil),  // 10: common.PaginationRequest
+	(*common.PaginationResponse)(nil), // 11: common.PaginationResponse
 }
 var file_project_project_proto_depIdxs = []int32{
-	7, // 0: project.CreateProjectResponse.base:type_name -> common.BaseResponse
-	7, // 1: project.DetailProjectResponse.base:type_name -> common.BaseResponse
-	8, // 2: project.ListProjectRequest.pagination:type_name -> common.PaginationRequest
-	7, // 3: project.ListProjectResponse.base:type_name -> common.BaseResponse
-	9, // 4: project.ListProjectResponse.pagination:type_name -> common.PaginationResponse
-	4, // 5: project.ListProjectResponse.data:type_name -> project.ListProjectItems
-	0, // 6: project.ProjectService.CreateProject:input_type -> project.CreateProjectRequest
-	2, // 7: project.ProjectService.DetailProject:input_type -> project.DetailProjectRequest
-	5, // 8: project.ProjectService.ListProject:input_type -> project.ListProjectRequest
-	1, // 9: project.ProjectService.CreateProject:output_type -> project.CreateProjectResponse
-	3, // 10: project.ProjectService.DetailProject:output_type -> project.DetailProjectResponse
-	6, // 11: project.ProjectService.ListProject:output_type -> project.ListProjectResponse
-	9, // [9:12] is the sub-list for method output_type
-	6, // [6:9] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	9,  // 0: project.CreateProjectResponse.base:type_name -> common.BaseResponse
+	9,  // 1: project.DetailProjectResponse.base:type_name -> common.BaseResponse
+	9,  // 2: project.DeleteProjectResponse.base:type_name -> common.BaseResponse
+	10, // 3: project.ListProjectRequest.pagination:type_name -> common.PaginationRequest
+	9,  // 4: project.ListProjectResponse.base:type_name -> common.BaseResponse
+	11, // 5: project.ListProjectResponse.pagination:type_name -> common.PaginationResponse
+	6,  // 6: project.ListProjectResponse.data:type_name -> project.ListProjectItems
+	0,  // 7: project.ProjectService.CreateProject:input_type -> project.CreateProjectRequest
+	2,  // 8: project.ProjectService.DetailProject:input_type -> project.DetailProjectRequest
+	4,  // 9: project.ProjectService.DeleteProject:input_type -> project.DeleteProjectRequest
+	7,  // 10: project.ProjectService.ListProject:input_type -> project.ListProjectRequest
+	1,  // 11: project.ProjectService.CreateProject:output_type -> project.CreateProjectResponse
+	3,  // 12: project.ProjectService.DetailProject:output_type -> project.DetailProjectResponse
+	5,  // 13: project.ProjectService.DeleteProject:output_type -> project.DeleteProjectResponse
+	8,  // 14: project.ProjectService.ListProject:output_type -> project.ListProjectResponse
+	11, // [11:15] is the sub-list for method output_type
+	7,  // [7:11] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_project_project_proto_init() }
@@ -559,7 +658,7 @@ func file_project_project_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_project_project_proto_rawDesc), len(file_project_project_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

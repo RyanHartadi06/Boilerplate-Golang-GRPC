@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	ProjectService_CreateProject_FullMethodName = "/project.ProjectService/CreateProject"
 	ProjectService_DetailProject_FullMethodName = "/project.ProjectService/DetailProject"
+	ProjectService_DeleteProject_FullMethodName = "/project.ProjectService/DeleteProject"
 	ProjectService_ListProject_FullMethodName   = "/project.ProjectService/ListProject"
 )
 
@@ -30,6 +31,7 @@ const (
 type ProjectServiceClient interface {
 	CreateProject(ctx context.Context, in *CreateProjectRequest, opts ...grpc.CallOption) (*CreateProjectResponse, error)
 	DetailProject(ctx context.Context, in *DetailProjectRequest, opts ...grpc.CallOption) (*DetailProjectResponse, error)
+	DeleteProject(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*DeleteProjectResponse, error)
 	ListProject(ctx context.Context, in *ListProjectRequest, opts ...grpc.CallOption) (*ListProjectResponse, error)
 }
 
@@ -61,6 +63,16 @@ func (c *projectServiceClient) DetailProject(ctx context.Context, in *DetailProj
 	return out, nil
 }
 
+func (c *projectServiceClient) DeleteProject(ctx context.Context, in *DeleteProjectRequest, opts ...grpc.CallOption) (*DeleteProjectResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteProjectResponse)
+	err := c.cc.Invoke(ctx, ProjectService_DeleteProject_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *projectServiceClient) ListProject(ctx context.Context, in *ListProjectRequest, opts ...grpc.CallOption) (*ListProjectResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListProjectResponse)
@@ -77,6 +89,7 @@ func (c *projectServiceClient) ListProject(ctx context.Context, in *ListProjectR
 type ProjectServiceServer interface {
 	CreateProject(context.Context, *CreateProjectRequest) (*CreateProjectResponse, error)
 	DetailProject(context.Context, *DetailProjectRequest) (*DetailProjectResponse, error)
+	DeleteProject(context.Context, *DeleteProjectRequest) (*DeleteProjectResponse, error)
 	ListProject(context.Context, *ListProjectRequest) (*ListProjectResponse, error)
 	mustEmbedUnimplementedProjectServiceServer()
 }
@@ -93,6 +106,9 @@ func (UnimplementedProjectServiceServer) CreateProject(context.Context, *CreateP
 }
 func (UnimplementedProjectServiceServer) DetailProject(context.Context, *DetailProjectRequest) (*DetailProjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DetailProject not implemented")
+}
+func (UnimplementedProjectServiceServer) DeleteProject(context.Context, *DeleteProjectRequest) (*DeleteProjectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProject not implemented")
 }
 func (UnimplementedProjectServiceServer) ListProject(context.Context, *ListProjectRequest) (*ListProjectResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListProject not implemented")
@@ -154,6 +170,24 @@ func _ProjectService_DetailProject_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProjectService_DeleteProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteProjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectServiceServer).DeleteProject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProjectService_DeleteProject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectServiceServer).DeleteProject(ctx, req.(*DeleteProjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ProjectService_ListProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListProjectRequest)
 	if err := dec(in); err != nil {
@@ -186,6 +220,10 @@ var ProjectService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DetailProject",
 			Handler:    _ProjectService_DetailProject_Handler,
+		},
+		{
+			MethodName: "DeleteProject",
+			Handler:    _ProjectService_DeleteProject_Handler,
 		},
 		{
 			MethodName: "ListProject",

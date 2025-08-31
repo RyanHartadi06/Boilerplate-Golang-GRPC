@@ -14,6 +14,7 @@ import (
 type IProjectService interface {
 	CreateProject(ctx context.Context, request *projectpb.CreateProjectRequest) (*projectpb.CreateProjectResponse, error)
 	DetailProject(ctx context.Context, request *projectpb.DetailProjectRequest) (*projectpb.DetailProjectResponse, error)
+	DeleteProject(context.Context, *projectpb.DeleteProjectRequest) (*projectpb.DeleteProjectResponse, error)
 }
 
 type projectService struct {
@@ -87,6 +88,28 @@ func (ps *projectService) DetailProject(ctx context.Context, request *projectpb.
 		DateEnd:   project.DateEnd.Format("2006-01-02"),
 		Status:    project.Status,
 		CreatedAt: project.CreatedAt.Format("2006-01-02 15:04:05"),
+	}, nil
+}
+func (ps *projectService) DeleteProject(ctx context.Context, request *projectpb.DeleteProjectRequest) (*projectpb.DeleteProjectResponse, error) {
+	// Cek project ke database
+	project, err := ps.projectRepository.GetProjectById(ctx, request.Id)
+	if err != nil {
+		return nil, err
+	}
+
+	if project == nil {
+		return &projectpb.DeleteProjectResponse{
+			Base: utils.NotFoundResponse("Not Found"),
+		}, nil
+	}
+
+	error := ps.projectRepository.DeleteProjectId(ctx, request.Id)
+	if error != nil {
+		return nil, error
+	}
+
+	return &projectpb.DeleteProjectResponse{
+		Base: utils.SuccessResponse("Project deleted successfully"),
 	}, nil
 }
 
