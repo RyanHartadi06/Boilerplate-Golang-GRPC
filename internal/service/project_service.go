@@ -52,7 +52,7 @@ func (ps *projectService) CreateProject(ctx context.Context, request *projectpb.
 		Name:      request.Name,
 		DateStart: dateStart,
 		DateEnd:   dateEnd,
-		Status:    "TODO",
+		Status:    string(entity.ProjectStatusTodo),
 		CreatedAt: time.Now(),
 		CreatedBy: "BACKOFFICE",
 	}

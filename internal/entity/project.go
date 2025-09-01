@@ -5,6 +5,15 @@ import (
 	"time"
 )
 
+// enum
+type ProjectStatus string
+
+const (
+	ProjectStatusTodo       ProjectStatus = "todo"
+	ProjectStatusInProgress ProjectStatus = "in_progress"
+	ProjectStatusCompleted  ProjectStatus = "completed"
+)
+
 type Project struct {
 	Id        string
 	Name      string
